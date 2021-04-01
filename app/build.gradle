@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
 
@@ -46,6 +47,11 @@ dependencies {
 
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.4"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.4"
+
+    implementation "com.google.dagger:dagger:2.33"
+    kapt "com.google.dagger:dagger-compiler:2.33"
+    implementation "com.google.dagger:dagger-android-support:2.33"
+    kapt "com.google.dagger:dagger-android-processor:2.33"
 
     testImplementation 'junit:junit:4.13.2'
 
