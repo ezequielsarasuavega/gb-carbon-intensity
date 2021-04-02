@@ -6,18 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import com.example.gbcarbonintensity.databinding.FragmentListBinding
+import com.example.gbcarbonintensity.databinding.FragmentDatePickerBinding
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class ListFragment : DaggerFragment() {
+class DatePickerFragment : DaggerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private val viewModel by viewModels<ListViewModel> { viewModelFactory }
+    private val viewModel by viewModels<DatePickerViewModel> { viewModelFactory }
 
-    private lateinit var viewDataBinding: FragmentListBinding
+    private lateinit var viewDataBinding: FragmentDatePickerBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,9 +25,11 @@ class ListFragment : DaggerFragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        viewDataBinding = FragmentListBinding.inflate(inflater, container, false).apply {
-            viewmodel = viewModel
-        }
+        viewDataBinding = FragmentDatePickerBinding.inflate(inflater, container, false)
+            .apply {
+                viewmodel = viewModel
+            }
+
         return viewDataBinding.root
 
     }
@@ -35,8 +37,24 @@ class ListFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setUi()
+
+        loadData()
+
+    }
+
+    private fun setUi() {
+
         // set the lifecycle owner to the lifecycle of the view
         viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
+
+        viewDataBinding.fragmentDatePickerRecyclerView.adapter = DatesAdapter(viewModel)
+
+    }
+
+    private fun loadData() {
+
+        viewModel.loadDates()
 
     }
 

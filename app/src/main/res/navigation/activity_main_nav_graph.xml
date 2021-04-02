@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:startDestination="@id/listFragment">
+    app:startDestination="@id/datePickerFragment">
 
     <fragment
-        android:id="@+id/listFragment"
-        android:name="com.example.gbcarbonintensity.list.ListFragment"
-        android:label="ListFragment" />
+        android:id="@+id/datePickerFragment"
+        android:name="com.example.gbcarbonintensity.list.DatePickerFragment"
+        android:label="DatePickerFragment" />
 
 </navigation>

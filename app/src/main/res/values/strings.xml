@@ -1,3 +1,7 @@
 <resources>
+
     <string name="app_name">GB Carbon Intensity</string>
+
+    <string name="fragment_date_picker_title">Get Carbon Intensity data for specific date</string>
+
 </resources>
