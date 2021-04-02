@@ -27,7 +27,7 @@ class DatePickerFragment : DaggerFragment() {
 
         viewDataBinding = FragmentDatePickerBinding.inflate(inflater, container, false)
             .apply {
-                viewmodel = viewModel
+                this.viewmodel = viewModel
             }
 
         return viewDataBinding.root

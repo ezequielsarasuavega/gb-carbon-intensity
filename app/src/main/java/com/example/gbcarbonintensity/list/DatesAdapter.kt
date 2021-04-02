@@ -43,9 +43,11 @@ class DatesAdapter(
 
         fun bind(viewModel: DatePickerViewModel, item: Date) {
 
-            binding.viewmodel = viewModel
-            binding.date = item
-            binding.executePendingBindings()
+            with(binding) {
+                this.viewmodel = viewModel
+                date = item
+                executePendingBindings()
+            }
 
         }
 
