@@ -16,7 +16,7 @@ import javax.inject.Singleton
     modules = [
         ApplicationModule::class,
         AndroidSupportInjectionModule::class,
-        ListModule::class
+        DatePickerModule::class
     ]
 )
 interface ApplicationComponent : AndroidInjector<GbCarbonIntensityApplication> {
