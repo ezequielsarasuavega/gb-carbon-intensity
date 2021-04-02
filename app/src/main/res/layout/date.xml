@@ -13,7 +13,7 @@
 
         <variable
             name="viewmodel"
-            type="com.example.gbcarbonintensity.list.DatePickerViewModel" />
+            type="com.example.gbcarbonintensity.datepicker.DatePickerViewModel" />
 
     </data>
 

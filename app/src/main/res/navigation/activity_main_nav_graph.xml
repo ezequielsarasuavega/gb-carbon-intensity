@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/datePickerFragment"
-        android:name="com.example.gbcarbonintensity.list.DatePickerFragment"
+        android:name="com.example.gbcarbonintensity.datepicker.DatePickerFragment"
         android:label="DatePickerFragment" />
 
 </navigation>

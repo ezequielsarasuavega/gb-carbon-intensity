@@ -1,4 +1,4 @@
-package com.example.gbcarbonintensity.list
+package com.example.gbcarbonintensity.datepicker
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
