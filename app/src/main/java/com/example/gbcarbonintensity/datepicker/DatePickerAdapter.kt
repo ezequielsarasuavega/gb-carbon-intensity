@@ -16,10 +16,7 @@ class DatesAdapter(
 ) : ListAdapter<Date, DatesAdapter.ViewHolder>(TaskDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
-        val item = getItem(position)
-        holder.bind(viewModel, item)
-
+        holder.bind(viewModel, getItem(position))
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder.from(parent)
@@ -31,12 +28,7 @@ class DatesAdapter(
         companion object {
 
             fun from(parent: ViewGroup): ViewHolder {
-
-                val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = DateBinding.inflate(layoutInflater, parent, false)
-
-                return ViewHolder(binding)
-
+                return ViewHolder(DateBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             }
 
         }
@@ -44,7 +36,7 @@ class DatesAdapter(
         fun bind(viewModel: DatePickerViewModel, item: Date) {
 
             with(binding) {
-                this.viewmodel = viewModel
+                this.viewModel = viewModel
                 date = item
                 executePendingBindings()
             }
