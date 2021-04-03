@@ -1,4 +1,4 @@
-package com.example.gbcarbonintensity.list
+package com.example.gbcarbonintensity.datepicker
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,8 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.gbcarbonintensity.common.EventObserver
 import com.example.gbcarbonintensity.databinding.FragmentDatePickerBinding
 import dagger.android.support.DaggerFragment
+import java.util.*
 import javax.inject.Inject
 
 class DatePickerFragment : DaggerFragment() {
@@ -27,7 +30,7 @@ class DatePickerFragment : DaggerFragment() {
 
         viewDataBinding = FragmentDatePickerBinding.inflate(inflater, container, false)
             .apply {
-                this.viewmodel = viewModel
+                this.viewModel = this@DatePickerFragment.viewModel
             }
 
         return viewDataBinding.root
@@ -39,6 +42,8 @@ class DatePickerFragment : DaggerFragment() {
 
         setUi()
 
+        setNavigation()
+
         loadData()
 
     }
@@ -49,6 +54,22 @@ class DatePickerFragment : DaggerFragment() {
         viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
 
         viewDataBinding.fragmentDatePickerRecyclerView.adapter = DatesAdapter(viewModel)
+
+    }
+
+    private fun setNavigation() {
+
+        viewModel.openCarbonIntensityDetailsEvent.observe(viewLifecycleOwner, EventObserver {
+            openCarbonIntensityDetails(it)
+        })
+
+    }
+
+    private fun openCarbonIntensityDetails(date: Date) {
+
+        findNavController().navigate(
+            DatePickerFragmentDirections.actionDatePickerFragmentToCarbonIntensityDetailsFragment(date)
+        )
 
     }
 

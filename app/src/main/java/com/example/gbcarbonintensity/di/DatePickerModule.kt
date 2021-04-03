@@ -1,8 +1,8 @@
 package com.example.gbcarbonintensity.di
 
 import androidx.lifecycle.ViewModel
-import com.example.gbcarbonintensity.list.DatePickerFragment
-import com.example.gbcarbonintensity.list.DatePickerViewModel
+import com.example.gbcarbonintensity.datepicker.DatePickerFragment
+import com.example.gbcarbonintensity.datepicker.DatePickerViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector

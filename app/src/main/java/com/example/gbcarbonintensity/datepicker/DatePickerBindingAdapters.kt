@@ -1,9 +1,9 @@
-package com.example.gbcarbonintensity.list
+package com.example.gbcarbonintensity.datepicker
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import java.text.SimpleDateFormat
+import com.example.gbcarbonintensity.utils.DateUtils
 import java.util.*
 
 /**
@@ -17,5 +17,5 @@ fun setItems(listView: RecyclerView, items: List<Date>) {
 
 @BindingAdapter("app:date")
 fun formatDate(textView: TextView, date: Date) {
-    textView.setText(SimpleDateFormat("EEEE, dd MMMM", Locale.getDefault()).format(date))
+    textView.setText(DateUtils.formatDate(date))
 }

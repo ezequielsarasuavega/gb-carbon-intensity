@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.gbcarbonintensity.list.DatePickerFragment">
+    tools:context="com.example.gbcarbonintensity.datepicker.DatePickerFragment">
 
     <data>
 
         <variable
-            name="viewmodel"
-            type="com.example.gbcarbonintensity.list.DatePickerViewModel" />
+            name="viewModel"
+            type="com.example.gbcarbonintensity.datepicker.DatePickerViewModel" />
 
     </data>
 
@@ -29,7 +29,7 @@
             android:id="@+id/fragment_date_picker_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:items="@{viewmodel.dates}"
+            app:items="@{viewModel.dates}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     </LinearLayout>

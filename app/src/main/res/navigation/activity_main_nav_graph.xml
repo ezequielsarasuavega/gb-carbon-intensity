@@ -5,7 +5,24 @@
 
     <fragment
         android:id="@+id/datePickerFragment"
-        android:name="com.example.gbcarbonintensity.list.DatePickerFragment"
-        android:label="DatePickerFragment" />
+        android:name="com.example.gbcarbonintensity.datepicker.DatePickerFragment"
+        android:label="DatePickerFragment">
+
+        <action
+            android:id="@+id/action_datePickerFragment_to_carbonIntensityDetailsFragment"
+            app:destination="@id/carbonIntensityDetailsFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/carbonIntensityDetailsFragment"
+        android:name="com.example.gbcarbonintensity.carbonintensitydetails.CarbonIntensityDetailsFragment"
+        android:label="CarbonIntensityDetailsFragment">
+
+        <argument
+            android:name="date"
+            app:argType="java.util.Date" />
+
+    </fragment>
 
 </navigation>
