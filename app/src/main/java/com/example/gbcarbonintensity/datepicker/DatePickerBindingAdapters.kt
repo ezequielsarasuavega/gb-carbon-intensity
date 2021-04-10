@@ -17,5 +17,5 @@ fun setItems(listView: RecyclerView, items: List<Date>) {
 
 @BindingAdapter("app:date")
 fun formatDate(textView: TextView, date: Date) {
-    textView.setText(DateUtils.formatDate(date))
+    textView.setText(DateUtils.formatDisplayDate(date))
 }
