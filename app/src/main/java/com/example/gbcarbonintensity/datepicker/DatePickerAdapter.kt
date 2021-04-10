@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.gbcarbonintensity.databinding.DateBinding
+import com.example.gbcarbonintensity.databinding.ItemDatePickerBinding
 import java.util.*
 
 /**
@@ -22,13 +22,13 @@ class DatesAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder.from(parent)
 
     class ViewHolder private constructor(
-        private val binding: DateBinding
+        private val binding: ItemDatePickerBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         companion object {
 
             fun from(parent: ViewGroup): ViewHolder {
-                return ViewHolder(DateBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+                return ViewHolder(ItemDatePickerBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             }
 
         }
