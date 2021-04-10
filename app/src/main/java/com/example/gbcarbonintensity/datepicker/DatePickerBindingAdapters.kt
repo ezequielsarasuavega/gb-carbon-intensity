@@ -10,12 +10,12 @@ import java.util.*
  * [BindingAdapter]s for the [Date]s list.
  */
 
-@BindingAdapter("app:items")
+@BindingAdapter("items")
 fun setItems(listView: RecyclerView, items: List<Date>) {
     (listView.adapter as DatesAdapter).submitList(items)
 }
 
-@BindingAdapter("app:date")
+@BindingAdapter("date")
 fun formatDate(textView: TextView, date: Date) {
-    textView.setText(DateUtils.formatDate(date))
+    textView.text = DateUtils.formatDisplayDate(date)
 }

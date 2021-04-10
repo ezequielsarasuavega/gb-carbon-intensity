@@ -29,7 +29,7 @@
             android:id="@+id/fragment_date_picker_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:items="@{viewModel.dates}"
+            items="@{viewModel.dates}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     </LinearLayout>

@@ -55,7 +55,7 @@ class CarbonIntensityDetailsFragment : DaggerFragment() {
 
     private fun loadData() {
 
-        viewModel.loadCarbonIntensityDetailsForDate(args.date)
+        viewModel.getCarbonIntensityForDate(args.date)
 
     }
 
