@@ -3,6 +3,9 @@
     <string name="app_name">GB Carbon Intensity</string>
 
     <string name="fragment_date_picker_title">Get Carbon Intensity data for specific date</string>
+
     <string name="fragment_carbon_intensity_details_title">Carbon Intensity data for: \n %1$s</string>
+    <string name="fragment_carbon_intensity_details_forecast_average_label">Forecast Average</string>
+    <string name="fragment_carbon_intensity_details_actual_average_label">Actual Average</string>
 
 </resources>

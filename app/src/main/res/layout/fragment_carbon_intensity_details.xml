@@ -6,6 +6,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <import type="com.example.gbcarbonintensity.utils.DateUtils" />
 
         <variable
@@ -19,7 +21,8 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/fragment_carbon_intensity_details_header"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:gravity="center"
@@ -29,7 +32,52 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="32dp"
+            android:background="@drawable/bg_fragment_carbon_intensity_details"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_carbon_intensity_details_header">
+            
+            <include
+                layout="@layout/component_fragment_carbon_intensity_detail_item"
+                app:label="@{@string/fragment_carbon_intensity_details_actual_average_label}"
+                app:value="@{viewModel.actualAverage.toString()}" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?colorPrimary" />
+
+            <include
+                layout="@layout/component_fragment_carbon_intensity_detail_item"
+                app:label="@{@string/fragment_carbon_intensity_details_forecast_average_label}"
+                app:value="@{viewModel.forecastAverage.toString()}" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="16dp"
+            android:background="?android:attr/colorBackground"
+            android:visibility="@{viewModel.dataLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_carbon_intensity_details_header">
+
+            <ProgressBar
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center" />
+
+        </FrameLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
-
