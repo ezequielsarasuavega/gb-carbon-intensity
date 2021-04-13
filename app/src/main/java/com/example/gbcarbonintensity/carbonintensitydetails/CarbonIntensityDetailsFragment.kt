@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.example.gbcarbonintensity.R
 import com.example.gbcarbonintensity.databinding.FragmentCarbonIntensityDetailsBinding
+import com.example.gbcarbonintensity.utils.DateUtils
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -18,7 +20,7 @@ class CarbonIntensityDetailsFragment : DaggerFragment() {
 
     private val viewModel by viewModels<CarbonIntensityDetailsViewModel> { viewModelFactory }
 
-    private lateinit var viewDataBinding: FragmentCarbonIntensityDetailsBinding
+    private lateinit var binding: FragmentCarbonIntensityDetailsBinding
 
     private val args: CarbonIntensityDetailsFragmentArgs by navArgs()
 
@@ -28,28 +30,50 @@ class CarbonIntensityDetailsFragment : DaggerFragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        viewDataBinding = FragmentCarbonIntensityDetailsBinding.inflate(inflater, container, false)
-            .apply {
-                this.viewModel = this@CarbonIntensityDetailsFragment.viewModel
-            }
-
-        return viewDataBinding.root
+        binding = FragmentCarbonIntensityDetailsBinding.inflate(inflater, container, false)
+        return binding.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUi()
+        setView()
 
         loadData()
 
     }
 
-    private fun setUi() {
+    private fun setView() {
 
-        // set the lifecycle owner to the lifecycle of the view
-        viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
+        viewModel.dataLoading.observe(viewLifecycleOwner, {
+            binding.fragmentCarbonIntensityDetailsLoadingView.visibility = if (it) {
+                View.VISIBLE
+            } else {
+                View.GONE
+            }
+        })
+
+        binding.fragmentCarbonIntensityDetailsHeader.text = getString(
+            R.string.fragment_carbon_intensity_details_title,
+            DateUtils.formatDisplayDate(args.date)
+        )
+
+        binding.fragmentCarbonIntensityDetailsActual.label.text = getString(
+            R.string.fragment_carbon_intensity_details_actual_average_label
+        )
+
+        viewModel.actualAverage.observe(viewLifecycleOwner, {
+            binding.fragmentCarbonIntensityDetailsActual.value.text = it.toString()
+        })
+
+        binding.fragmentCarbonIntensityDetailsForecast.label.text = getString(
+            R.string.fragment_carbon_intensity_details_forecast_average_label
+        )
+
+        viewModel.forecastAverage.observe(viewLifecycleOwner, {
+            binding.fragmentCarbonIntensityDetailsForecast.value.text = it.toString()
+        })
 
     }
 

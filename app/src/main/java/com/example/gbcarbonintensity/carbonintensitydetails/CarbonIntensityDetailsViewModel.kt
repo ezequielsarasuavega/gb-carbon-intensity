@@ -19,9 +19,6 @@ class CarbonIntensityDetailsViewModel @Inject constructor(
     private val _dataLoading = MutableLiveData<Boolean>()
     val dataLoading: LiveData<Boolean> = _dataLoading
 
-    private val _date = MutableLiveData<Date>()
-    val date: LiveData<Date> = _date
-
     private val _actualAverage = MutableLiveData<Int>()
     val actualAverage: LiveData<Int> = _actualAverage
 
@@ -32,8 +29,6 @@ class CarbonIntensityDetailsViewModel @Inject constructor(
 
         _dataLoading.value = true
 
-        _date.value = date
-
         viewModelScope.launch {
 
             val result = carbonIntensityRepository.getCarbonIntensityForDate(date)
@@ -42,6 +37,7 @@ class CarbonIntensityDetailsViewModel @Inject constructor(
 
                 _actualAverage.value = getActualAverage(result.data?.data ?: listOf())
                 _forecastAverage.value = getForecastAverage(result.data?.data ?: listOf())
+
             } else {
 
                 //TODO manage error

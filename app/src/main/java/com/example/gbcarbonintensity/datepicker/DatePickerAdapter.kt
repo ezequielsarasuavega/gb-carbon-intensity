@@ -6,17 +6,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gbcarbonintensity.databinding.ItemDatePickerBinding
+import com.example.gbcarbonintensity.utils.DateUtils
 import java.util.*
 
 /**
- * Adapter for the dates list. Has a reference to the [DatePickerViewModel] to send actions back to it.
+ * Adapter for the dates list
  */
 class DatesAdapter(
-    private val viewModel: DatePickerViewModel
+    private val clickListener: OnDateClickListener
 ) : ListAdapter<Date, DatesAdapter.ViewHolder>(TaskDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(viewModel, getItem(position))
+        holder.bind(clickListener, getItem(position))
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder.from(parent)
@@ -33,12 +34,16 @@ class DatesAdapter(
 
         }
 
-        fun bind(viewModel: DatePickerViewModel, item: Date) {
+        fun bind(clickListener: OnDateClickListener, item: Date) {
 
-            with(binding) {
-                this.viewModel = viewModel
-                date = item
-                executePendingBindings()
+            with (binding) {
+
+                date.text = DateUtils.formatDisplayDate(item)
+
+                root.setOnClickListener {
+                    clickListener.onClick(item)
+                }
+
             }
 
         }
@@ -46,7 +51,6 @@ class DatesAdapter(
     }
 
 }
-
 
 /**
  * Callback for calculating the diff between two non-null items in a list.
@@ -63,5 +67,11 @@ class TaskDiffCallback : DiffUtil.ItemCallback<Date>() {
     override fun areContentsTheSame(oldItem: Date, newItem: Date): Boolean {
         return oldItem == newItem
     }
+
+}
+
+interface OnDateClickListener {
+
+    fun onClick(date: Date)
 
 }

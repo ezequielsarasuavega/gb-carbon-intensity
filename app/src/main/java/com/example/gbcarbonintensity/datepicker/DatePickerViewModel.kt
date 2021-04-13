@@ -1,9 +1,6 @@
 package com.example.gbcarbonintensity.datepicker
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.gbcarbonintensity.common.Event
 import java.util.*
 import javax.inject.Inject
 
@@ -16,13 +13,9 @@ class DatePickerViewModel @Inject constructor() : ViewModel() {
 
     }
 
-    private val _dates = MutableLiveData<List<Date>>().apply { value = emptyList() }
-    val dates: LiveData<List<Date>> = _dates
+    val dates: List<Date> = getDatesList()
 
-    private val _openCarbonIntensityDetailsEvent = MutableLiveData<Event<Date>>()
-    val openCarbonIntensityDetailsEvent: LiveData<Event<Date>> = _openCarbonIntensityDetailsEvent
-
-    fun loadDates() {
+    private fun getDatesList(): List<Date> {
 
         val listOfDates = mutableListOf<Date>()
         for (i in THREE_DAYS_AFTER downTo THREE_DAYS_BEFORE) {
@@ -30,15 +23,8 @@ class DatePickerViewModel @Inject constructor() : ViewModel() {
             listOfDates.add(date.time)
         }
 
-        _dates.value = listOfDates
+        return listOfDates
 
-    }
-
-    /**
-     * Called by Data Binding
-     */
-    fun openCarbonIntensityDetails(date: Date) {
-        _openCarbonIntensityDetailsEvent.value = Event(date)
     }
 
 }
