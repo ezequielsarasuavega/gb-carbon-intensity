@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.gbcarbonintensity.common.viewLifecycle
 import com.example.gbcarbonintensity.databinding.FragmentDatePickerBinding
 import dagger.android.support.DaggerFragment
 import java.util.*
@@ -19,7 +20,7 @@ class DatePickerFragment : DaggerFragment() {
 
     private val viewModel by viewModels<DatePickerViewModel> { viewModelFactory }
 
-    private lateinit var binding: FragmentDatePickerBinding
+    private var binding: FragmentDatePickerBinding by viewLifecycle()
 
     override fun onCreateView(
         inflater: LayoutInflater,

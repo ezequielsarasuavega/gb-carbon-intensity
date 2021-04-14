@@ -53,7 +53,7 @@ object ApplicationModule {
 @Module
 abstract class ApplicationModuleBinds {
 
-    @Suppress("UNUSED")
+    @Suppress("unused")
     @Singleton
     @Binds
     abstract fun bindGbCarbonIntensityRepository(

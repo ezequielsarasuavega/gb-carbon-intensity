@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.example.gbcarbonintensity.R
+import com.example.gbcarbonintensity.common.viewLifecycle
 import com.example.gbcarbonintensity.databinding.FragmentCarbonIntensityDetailsBinding
 import com.example.gbcarbonintensity.utils.DateUtils
 import dagger.android.support.DaggerFragment
@@ -20,7 +21,7 @@ class CarbonIntensityDetailsFragment : DaggerFragment() {
 
     private val viewModel by viewModels<CarbonIntensityDetailsViewModel> { viewModelFactory }
 
-    private lateinit var binding: FragmentCarbonIntensityDetailsBinding
+    private var binding: FragmentCarbonIntensityDetailsBinding by viewLifecycle()
 
     private val args: CarbonIntensityDetailsFragmentArgs by navArgs()
 
