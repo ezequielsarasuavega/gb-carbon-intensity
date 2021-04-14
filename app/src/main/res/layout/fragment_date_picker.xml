@@ -1,38 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.gbcarbonintensity.datepicker.DatePickerFragment">
 
-    <data>
-
-        <variable
-            name="viewModel"
-            type="com.example.gbcarbonintensity.datepicker.DatePickerViewModel" />
-
-    </data>
-
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:text="@string/fragment_date_picker_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:gravity="center"
-            android:text="@string/fragment_date_picker_title"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fragment_date_picker_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/fragment_date_picker_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            items="@{viewModel.dates}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-    </LinearLayout>
-
-</layout>
-
+</LinearLayout>

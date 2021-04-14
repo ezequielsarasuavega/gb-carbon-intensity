@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.gbcarbonintensity.common.EventObserver
+import com.example.gbcarbonintensity.common.viewLifecycle
 import com.example.gbcarbonintensity.databinding.FragmentDatePickerBinding
 import dagger.android.support.DaggerFragment
 import java.util.*
@@ -20,7 +20,7 @@ class DatePickerFragment : DaggerFragment() {
 
     private val viewModel by viewModels<DatePickerViewModel> { viewModelFactory }
 
-    private lateinit var viewDataBinding: FragmentDatePickerBinding
+    private var binding: FragmentDatePickerBinding by viewLifecycle()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,40 +28,29 @@ class DatePickerFragment : DaggerFragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        viewDataBinding = FragmentDatePickerBinding.inflate(inflater, container, false)
-            .apply {
-                this.viewModel = this@DatePickerFragment.viewModel
-            }
-
-        return viewDataBinding.root
+        binding = FragmentDatePickerBinding.inflate(inflater, container, false)
+        return binding.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUi()
-
-        setNavigation()
-
-        loadData()
+        setView()
 
     }
 
-    private fun setUi() {
+    private fun setView() {
 
-        // set the lifecycle owner to the lifecycle of the view
-        viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
+        binding.fragmentDatePickerRecyclerView.adapter = DatesAdapter(object : OnDateClickListener {
 
-        viewDataBinding.fragmentDatePickerRecyclerView.adapter = DatesAdapter(viewModel)
+            override fun onClick(date: Date) {
+                openCarbonIntensityDetails(date)
+            }
 
-    }
-
-    private fun setNavigation() {
-
-        viewModel.openCarbonIntensityDetailsEvent.observe(viewLifecycleOwner, EventObserver {
-            openCarbonIntensityDetails(it)
-        })
+        }).apply {
+            submitList(viewModel.dates)
+        }
 
     }
 
@@ -70,12 +59,6 @@ class DatePickerFragment : DaggerFragment() {
         findNavController().navigate(
             DatePickerFragmentDirections.actionDatePickerFragmentToCarbonIntensityDetailsFragment(date)
         )
-
-    }
-
-    private fun loadData() {
-
-        viewModel.loadDates()
 
     }
 

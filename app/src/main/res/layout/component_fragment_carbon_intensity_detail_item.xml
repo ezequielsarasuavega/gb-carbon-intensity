@@ -1,39 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <data>
-
-        <variable
-            name="label"
-            type="String" />
-
-        <variable
-            name="value"
-            type="String" />
-
-    </data>
-
-    <FrameLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_gravity="start|center_vertical"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:layout_gravity="start|center_vertical"
-            android:text="@{label}" />
+    <TextView
+        android:id="@+id/value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|center_vertical"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:layout_gravity="end|center_vertical"
-            android:text="@{value}" />
-
-    </FrameLayout>
-
-</layout>
-
+</FrameLayout>
