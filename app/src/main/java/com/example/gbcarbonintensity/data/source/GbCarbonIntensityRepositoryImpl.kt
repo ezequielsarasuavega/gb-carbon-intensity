@@ -4,7 +4,6 @@ import com.example.gbcarbonintensity.data.source.remote.CarbonIntensityResponse
 import com.example.gbcarbonintensity.data.Result
 import com.example.gbcarbonintensity.data.Result.Success
 import com.example.gbcarbonintensity.data.Result.Error
-import com.example.gbcarbonintensity.di.ApplicationModule.GbCarbonIntensityRemoteDataSource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -15,7 +14,7 @@ import javax.inject.Inject
  * Concrete implementation to load carbon emissions from the remote data source.
  */
 class GbCarbonIntensityRepositoryImpl @Inject constructor(
-    @GbCarbonIntensityRemoteDataSource private val remoteDataSource: GbCarbonIntensityDataSource,
+    private val remoteDataSource: GbCarbonIntensityDataSource,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : GbCarbonIntensityRepository {
 

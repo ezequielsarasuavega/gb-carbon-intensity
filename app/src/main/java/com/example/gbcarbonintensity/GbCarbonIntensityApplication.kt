@@ -1,13 +1,10 @@
 package com.example.gbcarbonintensity
 
-import com.example.gbcarbonintensity.di.DaggerApplicationComponent
-import dagger.android.support.DaggerApplication
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
 /**
- * An [Application] that uses Dagger for Dependency Injection
+ * An [Application] that uses Hilt for Dependency Injection
  */
-class GbCarbonIntensityApplication : DaggerApplication() {
-
-    override fun applicationInjector() = DaggerApplicationComponent.factory().create(applicationContext)
-
-}
+@HiltAndroidApp
+class GbCarbonIntensityApplication : Application()

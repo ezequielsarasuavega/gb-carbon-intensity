@@ -7,11 +7,13 @@ import androidx.lifecycle.viewModelScope
 import com.example.gbcarbonintensity.data.source.remote.CarbonIntensityResponse
 import com.example.gbcarbonintensity.data.Result.Success
 import com.example.gbcarbonintensity.data.source.GbCarbonIntensityRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 import kotlin.math.roundToInt
 
+@HiltViewModel
 class CarbonIntensityDetailsViewModel @Inject constructor(
     private val carbonIntensityRepository: GbCarbonIntensityRepository
 ) : ViewModel() {

@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs.kotlin'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
 
@@ -55,10 +56,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
 
-    implementation 'com.google.dagger:dagger:2.33'
-    kapt 'com.google.dagger:dagger-compiler:2.33'
-    implementation 'com.google.dagger:dagger-android-support:2.33'
-    kapt 'com.google.dagger:dagger-android-processor:2.33'
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
