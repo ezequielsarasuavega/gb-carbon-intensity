@@ -4,22 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.example.gbcarbonintensity.R
 import com.example.gbcarbonintensity.common.viewLifecycle
 import com.example.gbcarbonintensity.databinding.FragmentCarbonIntensityDetailsBinding
 import com.example.gbcarbonintensity.utils.DateUtils
-import dagger.android.support.DaggerFragment
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
-class CarbonIntensityDetailsFragment : DaggerFragment() {
+@AndroidEntryPoint
+class CarbonIntensityDetailsFragment : Fragment() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private val viewModel by viewModels<CarbonIntensityDetailsViewModel> { viewModelFactory }
+    val viewModel by viewModels<CarbonIntensityDetailsViewModel>()
 
     private var binding: FragmentCarbonIntensityDetailsBinding by viewLifecycle()
 

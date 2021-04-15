@@ -1,9 +1,11 @@
 package com.example.gbcarbonintensity.datepicker
 
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.*
 import javax.inject.Inject
 
+@HiltViewModel
 class DatePickerViewModel @Inject constructor() : ViewModel() {
 
     private companion object {
