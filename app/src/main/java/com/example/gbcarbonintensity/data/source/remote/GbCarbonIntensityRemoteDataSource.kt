@@ -12,7 +12,9 @@ class GbCarbonIntensityRemoteDataSource internal constructor(
 ) : GbCarbonIntensityDataSource {
 
     override suspend fun getCarbonIntensityForDate(date: Date): Result<CarbonIntensityResponse?> {
+
         return ApiResponse.toResult(service.getCarbonIntensityForDate(date))
+
     }
 
 }

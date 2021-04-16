@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class CarbonIntensityDetailsFragment : Fragment() {
 
-    val viewModel by viewModels<CarbonIntensityDetailsViewModel>()
+    private val viewModel by viewModels<CarbonIntensityDetailsViewModel>()
 
     private var binding: FragmentCarbonIntensityDetailsBinding by viewLifecycle()
 
