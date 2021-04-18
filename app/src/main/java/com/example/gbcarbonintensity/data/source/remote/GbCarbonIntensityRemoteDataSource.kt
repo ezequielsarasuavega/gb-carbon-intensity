@@ -2,6 +2,7 @@ package com.example.gbcarbonintensity.data.source.remote
 
 import com.example.gbcarbonintensity.data.Result
 import com.example.gbcarbonintensity.data.source.GbCarbonIntensityDataSource
+import java.lang.Exception
 import java.util.*
 
 /**
@@ -13,7 +14,15 @@ class GbCarbonIntensityRemoteDataSource internal constructor(
 
     override suspend fun getCarbonIntensityForDate(date: Date): Result<CarbonIntensityResponse?> {
 
-        return ApiResponse.toResult(service.getCarbonIntensityForDate(date))
+        return try {
+
+            ApiResponse.toResult(service.getCarbonIntensityForDate(date))
+
+        } catch (runtime: Exception) {
+
+            Result.Error()
+
+        }
 
     }
 

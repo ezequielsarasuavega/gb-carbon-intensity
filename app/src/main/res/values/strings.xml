@@ -8,4 +8,7 @@
     <string name="fragment_carbon_intensity_details_forecast_average_label">Forecast Average</string>
     <string name="fragment_carbon_intensity_details_actual_average_label">Actual Average</string>
 
+    <string name="fragment_carbon_intensity_details_data_error_title">Error</string>
+    <string name="fragment_carbon_intensity_details_data_error_message">An unknown error occurred</string>
+
 </resources>

@@ -7,7 +7,7 @@
     tools:context="com.example.gbcarbonintensity.carbonintensitydetails.CarbonIntensityDetailsFragment">
 
     <TextView
-        android:id="@+id/fragment_carbon_intensity_details_header"
+        android:id="@+id/fragment_carbon_intensity_details_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -17,48 +17,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
+    <TableLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="32dp"
-        android:background="@drawable/bg_fragment_carbon_intensity_details"
-        android:orientation="vertical"
+        android:divider="?colorPrimary"
+        android:showDividers="middle"
+        android:stretchColumns="*"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_carbon_intensity_details_header">
+        app:layout_constraintTop_toBottomOf="@+id/fragment_carbon_intensity_details_title">
 
-        <include
-            android:id="@+id/fragment_carbon_intensity_details_actual"
-            layout="@layout/component_fragment_carbon_intensity_detail_item" />
+        <TableRow>
 
-        <View
+            <include
+                android:id="@+id/fragment_carbon_intensity_details_actual"
+                layout="@layout/component_fragment_carbon_intensity_details_item" />
+
+        </TableRow>
+
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="?colorPrimary" />
+            android:layout_height="wrap_content">
 
-        <include
-            android:id="@+id/fragment_carbon_intensity_details_forecast"
-            layout="@layout/component_fragment_carbon_intensity_detail_item" />
+            <include
+                android:id="@+id/fragment_carbon_intensity_details_forecast"
+                layout="@layout/component_fragment_carbon_intensity_details_item" />
 
-    </LinearLayout>
+        </TableRow>
 
-    <FrameLayout
+    </TableLayout>
+
+    <include
         android:id="@+id/fragment_carbon_intensity_details_loading_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="16dp"
-        android:background="?android:attr/colorBackground"
+        layout="@layout/component_loading_view"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_carbon_intensity_details_header">
-
-        <ProgressBar
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center" />
-
-    </FrameLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

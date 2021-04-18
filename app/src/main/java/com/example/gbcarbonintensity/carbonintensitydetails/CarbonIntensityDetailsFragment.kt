@@ -12,6 +12,8 @@ import com.example.gbcarbonintensity.common.viewLifecycle
 import com.example.gbcarbonintensity.databinding.FragmentCarbonIntensityDetailsBinding
 import com.example.gbcarbonintensity.utils.DateUtils
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.appcompat.app.AlertDialog
+
 
 @AndroidEntryPoint
 class CarbonIntensityDetailsFragment : Fragment() {
@@ -45,14 +47,14 @@ class CarbonIntensityDetailsFragment : Fragment() {
     private fun setView() {
 
         viewModel.dataLoading.observe(viewLifecycleOwner, {
-            binding.fragmentCarbonIntensityDetailsLoadingView.visibility = if (it) {
+            binding.fragmentCarbonIntensityDetailsLoadingView.root.visibility = if (it) {
                 View.VISIBLE
             } else {
                 View.GONE
             }
         })
 
-        binding.fragmentCarbonIntensityDetailsHeader.text = getString(
+        binding.fragmentCarbonIntensityDetailsTitle.text = getString(
             R.string.fragment_carbon_intensity_details_title,
             DateUtils.formatDisplayDate(args.date)
         )
@@ -73,11 +75,31 @@ class CarbonIntensityDetailsFragment : Fragment() {
             binding.fragmentCarbonIntensityDetailsForecast.value.text = it.toString()
         })
 
+        viewModel.dataError.observe(viewLifecycleOwner, { error ->
+            if (error) {
+                displayErrorAlertDialog()
+            }
+        })
+
     }
 
     private fun loadData() {
 
         viewModel.getCarbonIntensityForDate(args.date)
+
+    }
+
+    private fun displayErrorAlertDialog() {
+
+        context?.let { context ->
+
+            AlertDialog.Builder(context)
+                .setTitle(getString(R.string.fragment_carbon_intensity_details_data_error_title))
+                .setMessage(getString(R.string.fragment_carbon_intensity_details_data_error_message))
+                .setPositiveButton(android.R.string.ok, null)
+                .show()
+
+        }
 
     }
 

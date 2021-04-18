@@ -29,7 +29,10 @@ class DatesAdapter(
         companion object {
 
             fun from(parent: ViewGroup): ViewHolder {
-                return ViewHolder(ItemDatePickerBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+                return ViewHolder(
+                    ItemDatePickerBinding.inflate(
+                        LayoutInflater.from(parent.context), parent, false)
+                )
             }
 
         }

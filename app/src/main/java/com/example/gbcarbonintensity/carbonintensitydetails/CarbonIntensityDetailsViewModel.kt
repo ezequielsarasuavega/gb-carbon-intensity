@@ -27,6 +27,9 @@ class CarbonIntensityDetailsViewModel @Inject constructor(
     private val _forecastAverage = MutableLiveData<Int>()
     val forecastAverage: LiveData<Int> = _forecastAverage
 
+    private val _dataError = MutableLiveData<Boolean>()
+    val dataError: LiveData<Boolean> = _dataError
+
     fun getCarbonIntensityForDate(date: Date) {
 
         _dataLoading.value = true
@@ -37,12 +40,16 @@ class CarbonIntensityDetailsViewModel @Inject constructor(
 
             if (result is Success<CarbonIntensityResponse>) {
 
-                _actualAverage.value = getActualAverage(result.data?.data ?: listOf())
-                _forecastAverage.value = getForecastAverage(result.data?.data ?: listOf())
+                _dataError.value = false
+
+                with(result.data?.data ?: listOf()) {
+                    _actualAverage.value = getActualAverage(this)
+                    _forecastAverage.value = getForecastAverage(this)
+                }
 
             } else {
 
-                //TODO manage error
+                _dataError.value = true
 
             }
 
@@ -54,14 +61,16 @@ class CarbonIntensityDetailsViewModel @Inject constructor(
 
     private fun getActualAverage(data: List<CarbonIntensityResponse.CarbonIntensityResponseData?>): Int {
 
-        return data.map { it?.intensity?.actual ?: 0 }.average().roundToInt()
+        return getAverageAndRoundToInt(data.map { it?.intensity?.actual ?: 0 })
 
     }
 
     private fun getForecastAverage(data: List<CarbonIntensityResponse.CarbonIntensityResponseData?>): Int {
 
-        return data.map { it?.intensity?.forecast ?: 0 }.average().roundToInt()
+        return getAverageAndRoundToInt(data.map { it?.intensity?.forecast ?: 0 })
 
     }
+
+    private fun getAverageAndRoundToInt(list: List<Int>) = list.average().roundToInt()
 
 }
