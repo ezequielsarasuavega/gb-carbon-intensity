@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
 
-    ext.hilt_version = '2.33-beta'
+    ext.hilt_version = '2.37'
 
     repositories {
         google()
@@ -10,8 +10,8 @@ buildscript {
 
     dependencies {
 
-        classpath "com.android.tools.build:gradle:7.0.0-alpha14"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.32"
+        classpath 'com.android.tools.build:gradle:7.1.0-alpha05'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.10"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
 
@@ -32,7 +32,5 @@ allprojects {
 }
 
 task clean(type: Delete) {
-
     delete rootProject.buildDir
-
 }
