@@ -7,7 +7,7 @@ import kotlin.reflect.KProperty
 
 fun <T> Fragment.viewLifecycle(): ReadWriteProperty<Fragment, T> {
 
-    return object : ReadWriteProperty<Fragment, T>, LifecycleObserver {
+    return object : ReadWriteProperty<Fragment, T>, DefaultLifecycleObserver  {
 
         // a backing property to hold our value
         private var binding: T? = null
@@ -27,9 +27,8 @@ fun <T> Fragment.viewLifecycle(): ReadWriteProperty<Fragment, T> {
 
         }
 
-        @Suppress("unused")
-        @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-        fun onDestroy() {
+        override fun onDestroy(owner: LifecycleOwner) {
+            super.onDestroy(owner)
 
             // clear out backing property just before onDestroyView
             binding = null
