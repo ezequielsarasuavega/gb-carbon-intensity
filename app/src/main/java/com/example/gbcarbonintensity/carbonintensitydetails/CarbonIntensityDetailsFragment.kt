@@ -14,7 +14,6 @@ import com.example.gbcarbonintensity.utils.DateUtils
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.appcompat.app.AlertDialog
 
-
 @AndroidEntryPoint
 class CarbonIntensityDetailsFragment : Fragment() {
 
@@ -46,13 +45,13 @@ class CarbonIntensityDetailsFragment : Fragment() {
 
     private fun setView() {
 
-        viewModel.dataLoading.observe(viewLifecycleOwner, {
+        viewModel.dataLoading.observe(viewLifecycleOwner) {
             binding.fragmentCarbonIntensityDetailsLoadingView.root.visibility = if (it) {
                 View.VISIBLE
             } else {
                 View.GONE
             }
-        })
+        }
 
         binding.fragmentCarbonIntensityDetailsTitle.text = getString(
             R.string.fragment_carbon_intensity_details_title,
@@ -63,23 +62,23 @@ class CarbonIntensityDetailsFragment : Fragment() {
             R.string.fragment_carbon_intensity_details_actual_average_label
         )
 
-        viewModel.actualAverage.observe(viewLifecycleOwner, {
+        viewModel.actualAverage.observe(viewLifecycleOwner) {
             binding.fragmentCarbonIntensityDetailsActual.value.text = it.toString()
-        })
+        }
 
         binding.fragmentCarbonIntensityDetailsForecast.label.text = getString(
             R.string.fragment_carbon_intensity_details_forecast_average_label
         )
 
-        viewModel.forecastAverage.observe(viewLifecycleOwner, {
+        viewModel.forecastAverage.observe(viewLifecycleOwner) {
             binding.fragmentCarbonIntensityDetailsForecast.value.text = it.toString()
-        })
+        }
 
-        viewModel.dataError.observe(viewLifecycleOwner, { error ->
+        viewModel.dataError.observe(viewLifecycleOwner) { error ->
             if (error) {
                 displayErrorAlertDialog()
             }
-        })
+        }
 
     }
 

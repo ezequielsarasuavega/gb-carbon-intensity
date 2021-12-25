@@ -71,6 +71,14 @@ class CarbonIntensityDetailsViewModel @Inject constructor(
 
     }
 
-    private fun getAverageAndRoundToInt(list: List<Int>) = list.average().roundToInt()
+    private fun getAverageAndRoundToInt(list: List<Int>): Int {
+
+        return if (list.isEmpty()) {
+            0
+        } else {
+            list.average().roundToInt()
+        }
+
+    }
 
 }
